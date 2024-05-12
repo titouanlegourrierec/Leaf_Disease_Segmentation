@@ -35,12 +35,12 @@ PIXEL_AREA = (LABELS_WIDTH_MM/LABELS_WIDTH_PIXELS)**2
 ############################                 Main Function                 #############################
 ########################################################################################################
 
-def main(input_directory, output_directory, update_status = None, color_space = COLOR_SPACE):
+def main(input_directory, output_directory, update_status = None, project_path = PROJECT_PATH, color_space = COLOR_SPACE):
 
     start_process = status_update(update_status, "Start of process.\n")
     
     start = status_update(update_status, "Start of extraction of leaves and labels.")
-    results_path, file_path, unusable_file_path, labels_path, results_dataframe = save_leaves(input_directory, output_directory)
+    results_path, file_path, unusable_file_path, labels_path, results_dataframe, count_usable_files, count_unusable_files = save_leaves(input_directory, output_directory)
     status_update(update_status, f"End of extraction of leaves and labels. ({round(time.time() - start)}s)\n")
     
 
@@ -52,7 +52,7 @@ def main(input_directory, output_directory, update_status = None, color_space = 
     status_update(update_status, f"End of color space conversion. ({round(time.time() - start)}s)\n")
 
 
-    start = status_update(update_status, "Start of leaf extraction.")
+    start = status_update(update_status, "Start of leaves segmentation.")
     segmented_leaves_path = os.path.join(results_path, 'segmented_leaves') + '/'
     os.makedirs(segmented_leaves_path, exist_ok=True)
 
@@ -62,12 +62,12 @@ def main(input_directory, output_directory, update_status = None, color_space = 
         input_path = file_path
 
     run_ilastik(input_path = input_path,
-                project_path = PROJECT_PATH,
+                project_path = project_path,
                 result_base_path = segmented_leaves_path)
     
     if color_space in COLOR_SPACES:
         shutil.rmtree(color_space_subdir)
-    status_update(update_status, f"End of leaf extraction. ({round(time.time() - start)}s)\n")
+    status_update(update_status, f"End of leaves segmentation. ({round(time.time() - start)}s)\n")
 
 
     start = status_update(update_status, "Start of results analysis.")
@@ -82,6 +82,8 @@ def main(input_directory, output_directory, update_status = None, color_space = 
     status_update(update_status, f"End of results analysis. ({round(time.time() - start)}s)\n")
 
     status_update(update_status, f"End of process. ({round(time.time() - start_process)}s)")
+
+    return os.path.join(results_path, 'results.csv'), count_usable_files, count_unusable_files
 
 ########################################################################################################
 ############################           Helper Functions                    #############################
@@ -169,4 +171,4 @@ def save_leaves(input_directory, output_directory):
         'EPO': EPO_list
     })
 
-    return results_path, file_path, unusable_file_path, labels_path, results
+    return results_path, file_path, unusable_file_path, labels_path, results, count_usable_files, count_unusable_files
