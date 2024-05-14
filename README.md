@@ -46,9 +46,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#-about-the-project-📖">About The Project 📖</a>
+      <a href="#about-the-project">About The Project</a>
       <ul>
-        <li><a href="#-built-with-️🛠️">Built With 🛠️</a></li>
+        <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
     <li>
@@ -59,8 +59,8 @@
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <!-- <li><a href="#roadmap">Roadmap</a></li> -->
+    <!-- <li><a href="#contributing">Contributing</a></li> -->
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
@@ -70,7 +70,7 @@
 <!----------------------------------------------------------------------->
 <!----------------------------------------------------------------------->
 
-## About The Project 📖
+## About The Project
 
 <p align="center">
   <img src="image/segmentation.png" width="60%">
@@ -91,7 +91,7 @@ Once executed, the code generates a directory containing the leaves extracted fr
 <!----------------------------------------------------------------------->
 
 
-### Built With 🛠️
+### Built With
 * [![Python][Python-badge]][Python-url]
 * [![OpenCV][OpenCV-badge]][OpenCV-url]
 * ![Shell Script][ShellScript-badge]
@@ -101,7 +101,7 @@ Once executed, the code generates a directory containing the leaves extracted fr
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!----------------------------------------------------------------------->
 
-## Getting Started 🎬
+## Getting Started
 ### Prerequisites 
 
 * Ilastik software: To utilize this code, please download the Ilastik software tailored to your computer's operating system from: https://www.ilastik.org/download.
@@ -142,7 +142,7 @@ pip install -r requirements.txt
 <!----------------------------------------------------------------------->
 
 
-## Usage 👨‍💻
+## Usage
 
 To use this project, you have two options:
 
@@ -202,7 +202,7 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
 
-## License 📄
+## License
 
 Distributed under the GNU License. See [`LICENSE`](https://github.com/titouanlegourrierec/Leaf_Disease_Segmentation/blob/main/LICENCE) for more information.
 
@@ -210,7 +210,7 @@ Distributed under the GNU License. See [`LICENSE`](https://github.com/titouanleg
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 <!----------------------------------------------------------------------->
 
-## Contact ✉️
+## Contact
 
 LE GOURRIEREC Titouan - [titouanlegourrierec@icloud.com](mailto:titouanlegourrierec@icloud.com)
 
@@ -222,7 +222,7 @@ Project Link: [https://github.com/titouanlegourrierec/Leaf_Disease_Segmentation]
 <!----------------------------------------------------------------------->
 
 
-## Acknowledgments 🙏
+## Acknowledgments
 
 * [Ilastik Software](https://www.ilastik.org) : An interactive interface to annotate images to segment.
 * [EasIlastik package](https://github.com/titouanlegourrierec/EasIlastik) : A package to facilitate the use of trained model on Ilastik for image segmentation.
