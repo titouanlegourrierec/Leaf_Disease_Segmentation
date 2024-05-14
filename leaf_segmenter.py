@@ -28,7 +28,7 @@ def run_main():
     input_directory = input_dir_var.get()
     output_directory = output_dir_var.get()
     project_path = project_path_var.get()
-    csv_path, usable_files, unusable_files = main(input_directory = input_directory, output_directory = output_directory, update_status = update_status, project_path = project_path)
+    main(input_directory = input_directory, output_directory = output_directory, update_status = update_status, project_path = project_path)
 
 def update_status(status):
     """Update the status text with the given status."""

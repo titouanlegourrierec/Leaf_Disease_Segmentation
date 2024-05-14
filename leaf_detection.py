@@ -79,7 +79,7 @@ def leaf_detection(input_image,
         if area > threshold_area:
             x, y, w, h = cv2.boundingRect(c)
             if w > min_width and h > min_height:
-                bounding_boxes.append([x, y, x+w, y+h]) # Here we can do x+100 to avoid the stipule part of the leaf
+                bounding_boxes.append([x, y+200, x+w, y+h]) # y+200 to cut the stipule part of the leaf
     
     # Sort the bounding boxes from left to right
     bounding_boxes = sorted(bounding_boxes, key=lambda b: b[0])

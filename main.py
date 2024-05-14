@@ -36,14 +36,25 @@ PIXEL_AREA = (LABELS_WIDTH_MM/LABELS_WIDTH_PIXELS)**2
 ########################################################################################################
 
 def main(input_directory, output_directory, update_status = None, project_path = PROJECT_PATH, color_space = COLOR_SPACE):
+    """
+    Main function to process the images of leaves and extract the required information.
 
+    Parameters:
+        - input_directory (str): The directory where the input images are located.
+        - output_directory (str): The directory where the output will be saved.
+        - update_status (function, optional): A function to update the status of the process. Defaults to None.
+        - project_path (str, optional): The path to the project. Defaults to PROJECT_PATH.
+        - color_space (str, optional): The color space to be used for image processing. Defaults to COLOR_SPACE.
+    """
+    # Start of process
     start_process = status_update(update_status, "Start of process.\n")
     
+    # Extraction of leaves and labels
     start = status_update(update_status, "Start of extraction of leaves and labels.")
-    results_path, file_path, unusable_file_path, labels_path, results_dataframe, count_usable_files, count_unusable_files = save_leaves(input_directory, output_directory)
+    results_path, file_path, _, _, results_dataframe, _, _ = save_leaves(input_directory, output_directory)
     status_update(update_status, f"End of extraction of leaves and labels. ({round(time.time() - start)}s)\n")
     
-
+    # Color space conversion
     start = status_update(update_status, "Start of color space conversion.")
     if color_space in COLOR_SPACES:
         color_space_subdir = convert_color_space(file_path, results_path, color_space)
@@ -51,7 +62,7 @@ def main(input_directory, output_directory, update_status = None, project_path =
         color_space_subdir = file_path
     status_update(update_status, f"End of color space conversion. ({round(time.time() - start)}s)\n")
 
-
+    # Leaves segmentation
     start = status_update(update_status, "Start of leaves segmentation.")
     segmented_leaves_path = os.path.join(results_path, 'segmented_leaves') + '/'
     os.makedirs(segmented_leaves_path, exist_ok=True)
@@ -69,21 +80,33 @@ def main(input_directory, output_directory, update_status = None, project_path =
         shutil.rmtree(color_space_subdir)
     status_update(update_status, f"End of leaves segmentation. ({round(time.time() - start)}s)\n")
 
-
+    # Results analysis
     start = status_update(update_status, "Start of results analysis.")
-    background_area, leaf_area, healthy_leaf_area, oidium_area, rust_area = leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA)
 
+    # Extract leaf number from the new file name
+    leaf_number = []
+    for leaf in results_dataframe['New_File_Name']:
+        leaf_number.append(leaf.split('_')[1].split('.')[0][-1])
+
+    # Insert the new column 'Leaf_Number' after 'New_File_Name'
+    loc = results_dataframe.columns.get_loc("New_File_Name") + 1
+    results_dataframe.insert(loc, 'Leaf_Number', leaf_number)
+
+    # Analyze the leaves and get the areas of different parts
+    _, leaf_area, healthy_leaf_area, oidium_area, rust_area = leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA)
+
+    # Add the areas to the dataframe
     results_dataframe['leaf_area'] = leaf_area
     results_dataframe['healthy_leaf_area'] = healthy_leaf_area
     results_dataframe['oidium_area'] = oidium_area
     results_dataframe['rust_area'] = rust_area
 
+    # Save the results to a CSV file
     results_dataframe.to_csv(os.path.join(results_path, 'results.csv'), index=False)
     status_update(update_status, f"End of results analysis. ({round(time.time() - start)}s)\n")
-
+    
+    # End of process
     status_update(update_status, f"End of process. ({round(time.time() - start_process)}s)")
-
-    return os.path.join(results_path, 'results.csv'), count_usable_files, count_unusable_files
 
 ########################################################################################################
 ############################           Helper Functions                    #############################
