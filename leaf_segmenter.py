@@ -1,3 +1,14 @@
+"""
+leaf_segmenter.py
+
+Description:
+This file conatins code for the graphical user interface or for running the system
+from the command line.
+
+Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
+Date: 17/05/2024
+"""
+
 import argparse
 import sys
 

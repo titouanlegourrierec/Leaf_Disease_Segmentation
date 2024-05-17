@@ -1,3 +1,14 @@
+"""
+main.py
+---------------------
+
+Description:
+This file contains the main code for processing leaf images.
+
+Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
+Date: 17/05/2024
+"""
+
 import os
 import shutil
 import time

@@ -1,3 +1,15 @@
+"""
+Text Detection Module
+---------------------
+
+Description:
+This file contains code for text detection from images. It uses image processing and machine learning
+techniques to identify and extract text from images.
+
+Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
+Date: 17/05/2024
+"""
+
 # import libraries
 import re
 

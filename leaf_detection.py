@@ -1,3 +1,15 @@
+"""
+Leaf Detection Module
+---------------------
+
+Description:
+This file contains code for detecting leaves in an image. It uses image processing techniques to identify
+and extract leaves from images.
+
+Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
+Date: 17/05/2024
+"""
+
 # Import libraries
 import os
 import time

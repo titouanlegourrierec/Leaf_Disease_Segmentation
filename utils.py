@@ -1,3 +1,16 @@
+"""
+Utils Module
+---------------------
+
+Description:
+This file contains utility functions for leaf detection in an image. It includes functions for setting up
+the workspace, converting the color space of images, analyzing segmented leaves, and updating the process
+status.
+
+Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
+Date: 17/05/2024
+"""
+
 import os
 import time
 
