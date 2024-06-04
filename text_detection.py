@@ -7,7 +7,7 @@ This file contains code for text detection from images. It uses image processing
 techniques to identify and extract text from images.
 
 Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
-Date: 17/05/2024
+Date: 04/06/2024
 """
 
 # import libraries
@@ -159,7 +159,7 @@ def group_detections(detections_sorted, threshold) -> list:
 
 
 
-def remove_unwanted_elements(detections, unwanted_elements):
+def remove_unwanted_elements(detections, unwanted_elements) -> list:
     """
     Remove unwanted detections from a list of detections.
 
@@ -206,7 +206,7 @@ def get_value_starting_with(detections, start_char):
 
 
 
-def remove_elements_starting_with(detections, start_chars):
+def remove_elements_starting_with(detections, start_chars) -> list:
     """
     Remove detections from a list of detections if their detected text starts with any of the specified characters.
 
@@ -227,7 +227,7 @@ def remove_elements_starting_with(detections, start_chars):
     return [elt for elt in detections if not any(elt[1].startswith(char) for char in start_chars)]
 
 
-def get_number_from_groups(groups, keywords):
+def get_number_from_groups(groups, keywords) -> str:
     """
     Search through a nested list of groups for a keyword and return the first number found in the same group.
 
@@ -257,7 +257,7 @@ def get_number_from_groups(groups, keywords):
     return None
 
 
-def text_box(image, detections, compression_ratio):
+def text_box(image, detections, compression_ratio) -> np.ndarray:
     """
     Extract the part of the image within the bounding box that encompasses all detections.
 

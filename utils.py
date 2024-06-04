@@ -8,7 +8,7 @@ the workspace, converting the color space of images, analyzing segmented leaves,
 status.
 
 Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
-Date: 17/05/2024
+Date: 04/06/2024
 """
 
 import os
@@ -146,7 +146,7 @@ def leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA) -> tup
 
     return background_list, leaf_list, healthy_leaf_list, oidium_leaf_list, rust_leaf_list
 
-def status_update(update_status, message):
+def status_update(update_status, message) -> float:
     """Update the status of the process."""
     start = time.time()  # Record the start time
 

@@ -6,7 +6,7 @@ Description:
 This file contains the main code for processing leaf images.
 
 Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
-Date: 17/05/2024
+Date: 04/06/2024
 """
 
 import os
@@ -33,7 +33,7 @@ from utils import status_update
 
 # Parameters
 COLOR_SPACE = 'LAB'
-PROJECT_PATH = '/Users/titouanlegourrierec/Desktop/color_space_evaluation_OK 2/LAB/new_LAB.ilp'
+PROJECT_PATH = ''
 LABELS_WIDTH_PIXELS = 700
 LABELS_WIDTH_MM = 12.7
 
@@ -46,7 +46,7 @@ PIXEL_AREA = (LABELS_WIDTH_MM/LABELS_WIDTH_PIXELS)**2
 ############################                 Main Function                 #############################
 ########################################################################################################
 
-def main(input_directory, output_directory, update_status = None, project_path = PROJECT_PATH, color_space = COLOR_SPACE):
+def main(input_directory, output_directory, update_status = None, project_path = PROJECT_PATH, color_space = COLOR_SPACE) -> None:
     """
     Main function to process the images of leaves and extract the required information.
 
@@ -123,7 +123,7 @@ def main(input_directory, output_directory, update_status = None, project_path =
 ############################           Helper Functions                    #############################
 ########################################################################################################
 
-def save_leaves(input_directory, output_directory):
+def save_leaves(input_directory, output_directory) -> tuple:
     """
     This function extracts leaves and labels from images and saves them to files.
     

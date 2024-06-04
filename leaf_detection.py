@@ -7,7 +7,7 @@ This file contains code for detecting leaves in an image. It uses image processi
 and extract leaves from images.
 
 Authors: LE GOURRIEREC Titouan, CONNESSON Léna, PROUVOST Axel
-Date: 17/05/2024
+Date: 04/06/2024
 """
 
 # Import libraries
@@ -26,7 +26,7 @@ import cv2
 BLUR_KERNEL_SIZE = (80, 80)
 
 # the minimum area of a contour to be considered a leaf
-THRESHOLD_AREA = 600000
+THRESHOLD_AREA = 600_000
 
 # parameters for the binarization of the image
 BINARY_THRESHOLD = 128
@@ -35,11 +35,11 @@ BINARY_INV_THRESHOLD = 245
 
 # the minimum width and height of a bounding box to be considered a leaf
 MIN_WIDTH = 400
-MIN_HEIGHT = 5000
+MIN_HEIGHT = 5_000
 
 # the minimum and maximum height of the input image
-MIN_HEIGHT_FILE = 11000
-MAX_HEIGHT_FILE = 22500
+MIN_HEIGHT_FILE = 11_000
+MAX_HEIGHT_FILE = 22_500
 
 ########################################################################################################
 ############################                 Main Functions                 #############################
