@@ -32,10 +32,10 @@ READER = easyocr.Reader(['en'], gpu=True)
 ########################################################################################################
 
 
-def text_detection(img,
-                   reader = READER,
-                   threshold = 100,
-                   compression_ratio = 0.9) -> tuple:
+def text_detection(img: np.ndarray,
+                   reader: easyocr.Reader = READER,
+                   threshold: int = 100,
+                   compression_ratio: float = 0.9) -> tuple:
     """
     Process an image to extract certain information and measure the processing time.
 
@@ -88,7 +88,7 @@ def text_detection(img,
 ############################           Helper Functions                    #############################
 ########################################################################################################
 
-def sort_detections(detections) -> list:
+def sort_detections(detections: list[tuple]) -> list:
     """
     Sort a list of detections based on the average y-coordinate of each detection's bounding box. 
     The average y-coordinate is calculated as the mean of the y-coordinate of the top-left and 
@@ -113,7 +113,8 @@ def sort_detections(detections) -> list:
 
 
 
-def group_detections(detections_sorted, threshold) -> list:
+def group_detections(detections_sorted: list[tuple],
+                     threshold: int) -> list:
     """
     Groups the sorted detections based on a threshold value.
 
@@ -159,7 +160,8 @@ def group_detections(detections_sorted, threshold) -> list:
 
 
 
-def remove_unwanted_elements(detections, unwanted_elements) -> list:
+def remove_unwanted_elements(detections: list[tuple],
+                             unwanted_elements: list[str]) -> list:
     """
     Remove unwanted detections from a list of detections.
 
@@ -179,7 +181,8 @@ def remove_unwanted_elements(detections, unwanted_elements) -> list:
 
 
 
-def get_value_starting_with(detections, start_char):
+def get_value_starting_with(detections: list[tuple],
+                            start_char: str) -> str:
     """
     Search through a list of detections and return the detected text of the first detection 
     that starts with a specific character, excluding that character.
@@ -206,7 +209,8 @@ def get_value_starting_with(detections, start_char):
 
 
 
-def remove_elements_starting_with(detections, start_chars) -> list:
+def remove_elements_starting_with(detections: list[tuple],
+                                  start_chars: str) -> list:
     """
     Remove detections from a list of detections if their detected text starts with any of the specified characters.
 
@@ -227,7 +231,8 @@ def remove_elements_starting_with(detections, start_chars) -> list:
     return [elt for elt in detections if not any(elt[1].startswith(char) for char in start_chars)]
 
 
-def get_number_from_groups(groups, keywords) -> str:
+def get_number_from_groups(groups: list[list[list[tuple]]],
+                           keywords: list[str]) -> str:
     """
     Search through a nested list of groups for a keyword and return the first number found in the same group.
 
@@ -257,7 +262,9 @@ def get_number_from_groups(groups, keywords) -> str:
     return None
 
 
-def text_box(image, detections, compression_ratio) -> np.ndarray:
+def text_box(image: np.ndarray,
+             detections: list[tuple],
+             compression_ratio: float) -> np.ndarray:
     """
     Extract the part of the image within the bounding box that encompasses all detections.
 

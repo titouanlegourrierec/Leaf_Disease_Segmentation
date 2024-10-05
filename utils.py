@@ -15,6 +15,7 @@ import os
 import time
 
 import cv2
+import pandas as pd
 import numpy as np
 
 ########################################################################################################
@@ -33,7 +34,7 @@ IMAGE_EXTENSIONS = ['.jpg', '.jpeg', '.png']
 ############################                 Main Functions                 #############################
 ########################################################################################################
 
-def setup_workspace(output_directory) -> tuple:
+def setup_workspace(output_directory: str) -> tuple:
     """
     Sets up the workspace for the image processing task.
 
@@ -62,9 +63,9 @@ def setup_workspace(output_directory) -> tuple:
     return results_path, file_path, unusable_file_path, labels_path
 
 
-def convert_color_space(input_directory,
-                     output_directory,
-                     color_space) -> str:
+def convert_color_space(input_directory: str,
+                     output_directory: str,
+                     color_space: str) -> str:
     """
     Converts the color space of all images in the input directory and saves them in the output directory.
 
@@ -108,7 +109,9 @@ def convert_color_space(input_directory,
     return output_subdir
 
 
-def leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA) -> tuple:
+def leaves_analysis(results_dataframe: pd.DataFrame,
+                    segmented_leaves_path: str,
+                    PIXEL_AREA: float) -> tuple:
     """
     Analyzes the segmented leaves and calculates the area of each type of region.
 
@@ -131,7 +134,7 @@ def leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA) -> tup
     for elt in results_dataframe["New_File_Name"]:
 
         # Define the path to the segmented leaves image
-        path = '/Users/titouanlegourrierec/Desktop/results/segmented_leaves/' + os.path.splitext(elt)[0] + '_Simple_Segmentation.png'
+        path = segmented_leaves_path + '/' + os.path.splitext(elt)[0] + '_Simple_Segmentation.png'
 
         # Read the image and convert it to grayscale
         img = cv2.imread(path)
@@ -146,7 +149,8 @@ def leaves_analysis(results_dataframe, segmented_leaves_path, PIXEL_AREA) -> tup
 
     return background_list, leaf_list, healthy_leaf_list, oidium_leaf_list, rust_leaf_list
 
-def status_update(update_status, message) -> float:
+def status_update(update_status: callable, 
+                  message: str) -> float:
     """Update the status of the process."""
     start = time.time()  # Record the start time
 

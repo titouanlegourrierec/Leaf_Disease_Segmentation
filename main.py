@@ -33,7 +33,7 @@ from utils import status_update
 
 # Parameters
 COLOR_SPACE = 'LAB'
-PROJECT_PATH = ''
+MODEL_PATH = ''
 LABELS_WIDTH_PIXELS = 700
 LABELS_WIDTH_MM = 12.7
 
@@ -46,7 +46,11 @@ PIXEL_AREA = (LABELS_WIDTH_MM/LABELS_WIDTH_PIXELS)**2
 ############################                 Main Function                 #############################
 ########################################################################################################
 
-def main(input_directory, output_directory, update_status = None, project_path = PROJECT_PATH, color_space = COLOR_SPACE) -> None:
+def main(input_directory: str,
+         output_directory: str,
+         update_status = None, 
+         model_path: str = MODEL_PATH,
+         color_space: str = COLOR_SPACE) -> None:
     """
     Main function to process the images of leaves and extract the required information.
 
@@ -54,7 +58,7 @@ def main(input_directory, output_directory, update_status = None, project_path =
         - input_directory (str): The directory where the input images are located.
         - output_directory (str): The directory where the output will be saved.
         - update_status (function, optional): A function to update the status of the process. Defaults to None.
-        - project_path (str, optional): The path to the project. Defaults to PROJECT_PATH.
+        - model_path (str, optional): The path to the model. Defaults to MODEL_PATH.
         - color_space (str, optional): The color space to be used for image processing. Defaults to COLOR_SPACE.
     """
     # Start of process
@@ -84,7 +88,7 @@ def main(input_directory, output_directory, update_status = None, project_path =
         input_path = file_path
 
     run_ilastik(input_path = input_path,
-                project_path = project_path,
+                model_path = model_path,
                 result_base_path = segmented_leaves_path)
     
     if color_space in COLOR_SPACES:
@@ -123,7 +127,8 @@ def main(input_directory, output_directory, update_status = None, project_path =
 ############################           Helper Functions                    #############################
 ########################################################################################################
 
-def save_leaves(input_directory, output_directory) -> tuple:
+def save_leaves(input_directory: str,
+                output_directory: str) -> tuple:
     """
     This function extracts leaves and labels from images and saves them to files.
     

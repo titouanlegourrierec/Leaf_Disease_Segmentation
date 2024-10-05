@@ -45,14 +45,14 @@ MAX_HEIGHT_FILE = 22_500
 ############################                 Main Functions                 #############################
 ########################################################################################################
 
-def leaf_detection(input_image,
-                   kernel_size = BLUR_KERNEL_SIZE,
-                   bin_threshold = BINARY_THRESHOLD,
-                   max_value = MAX_BINARY_VALUE,
-                   inv_threshold = BINARY_INV_THRESHOLD,
-                   threshold_area = THRESHOLD_AREA,
-                   min_width = MIN_WIDTH,
-                   min_height = MIN_HEIGHT) -> np.ndarray :
+def leaf_detection(input_image: np.ndarray,
+                   kernel_size: int = BLUR_KERNEL_SIZE,
+                   bin_threshold: int = BINARY_THRESHOLD,
+                   max_value: int = MAX_BINARY_VALUE,
+                   inv_threshold: int = BINARY_INV_THRESHOLD,
+                   threshold_area: int = THRESHOLD_AREA,
+                   min_width: int = MIN_WIDTH,
+                   min_height: int = MIN_HEIGHT) -> np.ndarray :
     """
     Function to detect leaves in an image.
 
@@ -75,7 +75,7 @@ def leaf_detection(input_image,
 
     # Binarize the image
     # Convert the image to grayscale
-     # Invert the grayscale image
+    # Invert the grayscale image
     _, binarized_image = cv2.threshold(blurred_image, bin_threshold, max_value, cv2.THRESH_BINARY)
     grayscale_image = cv2.cvtColor(binarized_image, cv2.COLOR_BGR2GRAY)
     _, inverted_image = cv2.threshold(grayscale_image, inv_threshold, max_value, cv2.THRESH_BINARY_INV)
@@ -99,7 +99,7 @@ def leaf_detection(input_image,
     return np.array(bounding_boxes)
 
 
-def is_image_usable(image) -> bool:
+def is_image_usable(image: np.ndarray) -> bool:
     """
     Checks if the image is usable based on its dimensions.
     

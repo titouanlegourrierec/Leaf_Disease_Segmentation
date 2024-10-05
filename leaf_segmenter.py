@@ -20,28 +20,28 @@ import pandas as pd
 
 from main import main
 
-def browse_directory(directory_var, button):
+def browse_directory(directory_var: str, button: tk.Button) -> None:
     """Open a file dialog and set the directory_var to the selected directory."""
     directory = filedialog.askdirectory()
     if directory:  # If a directory was selected
         directory_var.set(directory)
         button.config(fg='green')  # Change the button color to green
 
-def browse_file(file_var, button):
+def browse_file(file_var: str, button: tk.Button) -> None:
     """Open a file dialog and set the file_var to the selected file."""
     file_path = filedialog.askopenfilename()
     if file_path:  # If a file was selected
         file_var.set(file_path)
         button.config(fg='green')  # Change the button color to green
 
-def run_main():
+def run_main() -> None:
     """Run the main function with the selected directories."""
     input_directory = input_dir_var.get()
     output_directory = output_dir_var.get()
-    project_path = project_path_var.get()
-    main(input_directory = input_directory, output_directory = output_directory, update_status = update_status, project_path = project_path)
+    model_path = model_path_var.get()
+    main(input_directory = input_directory, output_directory = output_directory, update_status = update_status, model_path = model_path)
 
-def update_status(status):
+def update_status(status: str) -> None:
     """Update the status text with the given status."""
     status_text.insert(END, status + "\n")
     root.update()
@@ -52,17 +52,17 @@ def parse_args():
     parser = argparse.ArgumentParser(description='Run the main function with the selected directories.')
     parser.add_argument('-i', '--input', help='Input directory')
     parser.add_argument('-o', '--output', help='Output directory')
-    parser.add_argument('-p', '--project', help='Project path')
+    parser.add_argument('-p', '--model', help='model path')
     return parser.parse_args()
 
-def main_cli():
+def main_cli() -> None:
     """Run the main function with command line arguments."""
     args = parse_args()
-    if args.input and args.output and args.project:
-        #main(args.input, args.output, args.project)
-        main(input_directory = args.input, output_directory = args.output, project_path = args.project)
+    if args.input and args.output and args.model:
+        #main(args.input, args.output, args.model)
+        main(input_directory = args.input, output_directory = args.output, model_path = args.model)
     else:
-        print("Input, output directories and project path must be provided.")
+        print("Input, output directories and model path must be provided.")
         sys.exit(1)
 
 if __name__ == "__main__":
@@ -73,24 +73,24 @@ if __name__ == "__main__":
         root.geometry("600x400")
         root.title("Leaf Disease Detection")
 
-        # Create StringVars to hold the directories and project path
+        # Create StringVars to hold the directories and model path
         input_dir_var = tk.StringVar()
         output_dir_var = tk.StringVar()
-        project_path_var = tk.StringVar()
+        model_path_var = tk.StringVar()
 
         # Create a frame to hold the buttons
         button_frame = tk.Frame(root)
         button_frame.pack(pady=10)
 
-        # Create browse buttons for the directories and project path
+        # Create browse buttons for the directories and model path
         input_dir_button = tk.Button(button_frame, text="Browse Input Directory", command=lambda: browse_directory(input_dir_var, input_dir_button))
         input_dir_button.pack(side='left', padx=10)
 
         output_dir_button = tk.Button(button_frame, text="Browse Output Directory", command=lambda: browse_directory(output_dir_var, output_dir_button))
         output_dir_button.pack(side='left', padx=10)
 
-        project_path_button = tk.Button(button_frame, text="Browse Project Path", command=lambda: browse_file(project_path_var, project_path_button))
-        project_path_button.pack(side='left', padx=10)
+        model_path_button = tk.Button(button_frame, text="Browse model Path", command=lambda: browse_file(model_path_var, model_path_button))
+        model_path_button.pack(side='left', padx=10)
 
         # Create a text widget to display the status
         status_text = tk.Text(root, height=20, width=60)
