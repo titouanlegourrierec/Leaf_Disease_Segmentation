@@ -18,7 +18,7 @@ imageio==2.34.1
 ipykernel==6.29.4
 ipython==8.24.0
 jedi==0.19.1
-Jinja2==3.1.4
+Jinja2==3.1.5
 jupyter_client==8.6.1
 jupyter_core==5.7.2
 kiwisolver==1.4.5
