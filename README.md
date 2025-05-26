@@ -148,7 +148,7 @@ To use this project, you have two options:
 
 1. **GUI Interface**: Utilize it through the graphical user interface.
 ```bash
-env/bin/python segmenter.py
+env/bin/python leaf_segmenter.py
 ```
 Here, you have an interface where you can choose the input directory containing images to process, the directory where processed images will be saved, and the path to the model you want to use. Then, click on the "run" button and wait for the result.
 
@@ -158,7 +158,7 @@ Here, you have an interface where you can choose the input directory containing 
 
 2. **Terminal Command**: Use it via command line in the terminal.
 ```bash
-env/bin/python segmenter.py -i path/to/input/directory -o path/to/output/directory -p /path/to/trained/model
+env/bin/python leaf_detection.py -i path/to/input/directory -o path/to/output/directory -p /path/to/trained/model
 ```
 
 

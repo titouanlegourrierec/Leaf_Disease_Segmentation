@@ -70,7 +70,7 @@ if __name__ == "__main__":
         main_cli()
     else:  # If no command line arguments were provided, launch the GUI
         root = tk.Tk()
-        root.geometry("600x400")
+        root.geometry("800x600")
         root.title("Leaf Disease Detection")
 
         # Create StringVars to hold the directories and model path
